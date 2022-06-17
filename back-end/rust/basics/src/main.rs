@@ -1,6 +1,7 @@
-mod simple_test;
-
 fn main() {
-    println!("{}", simple_test::add(1, 2));
-    println!("Hello world.");
+    let first = String::from("Hello world");
+    let second = first.clone();
+
+    println!("{}", first);
+    println!("{}", second);
 }

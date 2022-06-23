@@ -1,9 +1,12 @@
 using MediatR;
 
-public class HelloHandler : IRequestHandler<HelloRequest, string>
+public class HelloHandler : IRequestHandler<HelloRequest, HelloResponse>
 {
-    public Task<string> Handle(HelloRequest request, CancellationToken cancellationToken)
+    public Task<HelloResponse> Handle(HelloRequest request, CancellationToken cancellationToken)
     {
-        return Task.FromResult($"Hello, {request.Message}");
+        return Task.FromResult(new HelloResponse
+        {
+            Message = $"Hello {request.Message}!"
+        });
     }
 }

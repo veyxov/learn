@@ -11,10 +11,9 @@ public class HelloController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet("/hello")]
-    public async Task<string> GetAsync()
+    [HttpPost("/hello")]
+    public async Task<ActionResult<HelloResponse>> GetAsync(HelloRequest request)
     {
-        var result = _mediator.Send(new HelloRequest());
-        return await result;
+        return Ok(await _mediator.Send(request));
     }
 }

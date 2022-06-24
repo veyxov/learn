@@ -19,8 +19,8 @@ public class TodoController : ControllerBase
         return Ok();
     }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<List<Todo>>> Get(TodoGetQuery query)
+    [HttpGet]
+    public async Task<ActionResult<List<Todo>>> Get([FromQuery] TodoGetQuery query)
     {
         return Ok(await _mediator.Send(query));
     }

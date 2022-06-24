@@ -11,6 +11,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
+// Services
+builder.Services.AddTransient<ITodoService, TodoService>();
+builder.Services.AddSingleton<TheContext>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

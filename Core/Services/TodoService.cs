@@ -1,8 +1,8 @@
 public interface ITodoService
 {
-    Task<List<Todo>> Get(int id);
+    Task<List<Todo>> Get(Guid id);
     Task Add(Todo todo);
-    Task Delete(int id);
+    Task Delete(Guid id);
 }
 
 public class TodoService : ITodoService
@@ -19,16 +19,16 @@ public class TodoService : ITodoService
         return Task.Run(() => _context.Todos.Add(todo));
     }
 
-    public Task Delete(int id)
+    public Task Delete(Guid id)
     {
         var todo = _context.Todos.FirstOrDefault(t => t.Id == id) ?? throw new Exception("Todo not found");
 
         return Task.Run(() => _context.Todos.Remove(todo));
     }
 
-    public Task<List<Todo>> Get(int id)
+    public Task<List<Todo>> Get(Guid id)
     {
-        if (id == 0)
+        if (id == Guid.Empty)
             return Task.Run(() => _context.Todos.ToList());
         return Task.Run(() => _context.Todos.Where(t => t.Id == id).ToList());
     }

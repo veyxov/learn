@@ -4,6 +4,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Services
+builder.Services.AddSingleton<DapperContext>();
 builder.Services.AddSingleton<TodoRepo>();
 
 var app = builder.Build();

@@ -1,12 +1,25 @@
+using Dapper;
+
 public class TodoRepo
 {
+    private readonly DapperContext _context;
+    public TodoRepo(DapperContext context)
+    {
+        _context = context;
+    }
+
     public Task Add(Todo todo)
     {
         throw new NotImplementedException();
     }
 
-    public Task GetAll()
+    public async Task<List<Todo>> GetAll()
     {
-        throw new NotImplementedException();
+        var query = "SELECT * FROM Todos";
+        using (var connection = _context.CreateConnection())
+        {
+            var todo = connection.Query<Todo>(query);
+            return todo.ToList();
+        }
     }
 }

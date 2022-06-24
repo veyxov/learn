@@ -1,5 +1,5 @@
+using Microsoft.Data.Sqlite;
 using System.Data;
-using System.Data.SqlClient;
 
 public class DapperContext
 {
@@ -7,9 +7,9 @@ public class DapperContext
 
     public DapperContext()
     {
-        _connectionString = "Database=todo.db";
+        _connectionString = "Data Source=todo.db;";
     }
 
     public IDbConnection CreateConnection()
-        => new SqlConnection(_connectionString);
+        => new SqliteConnection(_connectionString);
 }

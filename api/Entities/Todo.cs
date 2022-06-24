@@ -1,5 +1,7 @@
 public class Todo
 {
+    public Todo() { }
+
     public Todo(string title)
     {
         Title = title;

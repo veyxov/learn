@@ -1,6 +1,6 @@
 public interface ITodoService
 {
-    Task<List<Todo>> GetAll();
+    Task<List<Todo>> Get(int id);
     Task Add(Todo todo);
     Task Delete(int id);
 }
@@ -26,8 +26,10 @@ public class TodoService : ITodoService
         return Task.Run(() => _context.Todos.Remove(todo));
     }
 
-    public Task<List<Todo>> GetAll()
+    public Task<List<Todo>> Get(int id)
     {
-        return Task.Run(() => _context.Todos.ToList());
+        if (id == 0)
+            return Task.Run(() => _context.Todos.ToList());
+        return Task.Run(() => _context.Todos.Where(t => t.Id == id).ToList());
     }
 }

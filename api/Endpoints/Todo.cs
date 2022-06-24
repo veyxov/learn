@@ -7,7 +7,8 @@ public static class TodoApi
         app.MapPost("/todo/{title}", ([FromRoute] string title, [FromServices] TodoRepo repo)
                      =>
         {
-            return Results.Ok(new Todo(title));
+            repo.Add(new Todo(title));
+            return Results.Ok();
         });
 
     }

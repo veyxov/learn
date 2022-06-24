@@ -1,12 +1,17 @@
 using MediatR;
 
-public class HelloHandler : IRequestHandler<HelloRequest, HelloResponse>
+public class TodoCreateHandler : IRequestHandler<TodoCreateRequest>
 {
-    public Task<HelloResponse> Handle(HelloRequest request, CancellationToken cancellationToken)
+    private readonly ITodoService _todo;
+
+    public TodoCreateHandler(ITodoService todo)
     {
-        return Task.FromResult(new HelloResponse
-        {
-            Message = $"Hello {request.Message}!"
-        });
+        _todo = todo;
+    }
+
+    public async Task<Unit> Handle(TodoCreateRequest request, CancellationToken cancellationToken)
+    {
+        await _todo.Add(new Todo(request.Title, request.Description));
+        return Unit.Value;
     }
 }

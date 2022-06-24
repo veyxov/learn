@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
+[Route("/todo")]
 public class TodoController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -11,9 +12,10 @@ public class TodoController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpPost("/a")]
-    public async Task<ActionResult<HelloResponse>> GetAsync(HelloRequest request)
+    [HttpGet]
+    public async Task<IActionResult> Get(TodoCreateRequest request)
     {
-        return Ok(await _mediator.Send(request));
+        await _mediator.Send(request);
+        return Ok();
     }
 }

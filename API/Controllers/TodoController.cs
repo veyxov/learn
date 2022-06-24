@@ -2,16 +2,16 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-public class HelloController : ControllerBase
+public class TodoController : ControllerBase
 {
     private readonly IMediator _mediator;
 
-    public HelloController(IMediator mediator)
+    public TodoController(IMediator mediator)
     {
         _mediator = mediator;
     }
 
-    [HttpPost("/hello")]
+    [HttpPost("/a")]
     public async Task<ActionResult<HelloResponse>> GetAsync(HelloRequest request)
     {
         return Ok(await _mediator.Send(request));

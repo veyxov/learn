@@ -4,11 +4,17 @@ public static class TodoApi
 {
     public static void MapTodoRoutes(this IEndpointRouteBuilder app)
     {
-        app.MapPost("/todo/{title}", async ([FromRoute] string title, [FromServices] TodoRepo repo)
+        app.MapGet("/todo", async ([FromServices] TodoRepo repo)
                      =>
         {
-            return Results.Ok(await repo.GetAll());
+            return Results.Ok(repo.GetAll());
         });
 
+        app.MapPost("/todo/{title}", async ([FromQuery] string title, [FromServices] TodoRepo repo)
+                     =>
+        {
+            await repo.Add(new Todo(title));
+            return Results.Ok();
+        });
     }
 }

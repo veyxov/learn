@@ -10,10 +10,14 @@ public class TodoRepo
 
     public Task Add(Todo todo)
     {
-        throw new NotImplementedException();
+        var query = @"INSERT INTO Todos (Id, Title) VALUES (@Id, @Title)";
+        using (var connection = _context.CreateConnection())
+        {
+            return connection.ExecuteAsync(query, new { todo.Id, todo.Title });
+        }
     }
 
-    public async Task<List<Todo>> GetAll()
+    public List<Todo> GetAll()
     {
         var query = "SELECT * FROM Todos";
         using (var connection = _context.CreateConnection())

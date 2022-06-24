@@ -5,10 +5,10 @@ public class Todo
     public Todo(string title)
     {
         Title = title;
-        Id = Guid.NewGuid();
+        Id = Guid.NewGuid().ToString();
     }
 
-    public Guid Id { get; set; }
+    public string Id { get; set; }
     public string Title { get; set; }
 }
 

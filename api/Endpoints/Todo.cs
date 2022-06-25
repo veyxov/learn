@@ -10,7 +10,7 @@ public static class TodoApi
             return Results.Ok(repo.GetAll());
         });
 
-        app.MapPost("/todo/{title}", async ([FromQuery] string title, [FromServices] TodoRepo repo)
+        app.MapPost("/todo/{title}", async ([FromRoute] string title, [FromServices] TodoRepo repo)
                      =>
         {
             await repo.Add(new Todo(title));

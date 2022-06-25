@@ -1,32 +1,71 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import './App.css';
+import axios from 'axios';
 
-function App() {
-    // image state
-    const [image, setImage] = useState([]);
+function TodoInput({ setTodos }) {
+    const [title, setTitle] = useState('');
 
-    useEffect(() => {
-        // Get random image
-        const getRandomImage = async () => {
-            const response = await fetch('http://localhost:5180/todo');
-            const image = await response.json();
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+        axios.post(`http://localhost:5180/todo/${title}`);
+        setTodos((prev) => [...prev, title]);
+    }
+    const handleChange = (e: any) => {
+        setTitle(e.target.value);
+    }
 
-            setImage(image);
-        }
-        getRandomImage();
-    }, []);
+    return (
+        <form onSubmit={handleSubmit}>
+            <input onChange={handleChange} type="text" placeholder="Add todo" />
+            <input type="submit" value="Add" />
+        </form>
+    );
+}
+
+interface ITodosContainer {
+    todos: any[]
+}
+
+const TodosContainer: FC<ITodosContainer> = ({ todos }) => {
     return (
         <>
             {
-                image.length > 0 &&
-                image.map((image: any, index) => {
-                    return (
-                        <div key={index}>
-                            <h1>{image.title}</h1>
-                        </div>
-                    )
-                })
+                todos.length > 0 ?
+                    todos.map((todo: any, index) => {
+                        return (
+                            <div key={index}>
+                                <h1>{todo.title}</h1>
+                                <h4>{todo.CreationDate}</h4>
+                            </div>
+                        )
+                    })
+                    :
+                    <h1>No todos rn.</h1>
             }
+        </>
+    );
+}
+
+function App() {
+    // image state
+    const [todos, setTodos] = useState([]);
+
+    // Get random image
+    const getTodos = async () => {
+        const response = await fetch('http://localhost:5180/todo');
+        const todos = await response.json();
+
+        setTodos(todos);
+    }
+
+    useEffect(() => {
+        getTodos();
+    }, []);
+
+    return (
+        <>
+            <TodoInput setTodos={setTodos} />
+            <TodosContainer todos={todos} />
         </>
     );
 }

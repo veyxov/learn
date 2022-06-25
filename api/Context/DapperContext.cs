@@ -11,6 +11,5 @@ public class DapperContext
         _connectionString = "Data Source=todo.db;";
     }
 
-    public IDbConnection CreateConnection()
-        => new SqliteConnection(_connectionString);
+    public IDbConnection CreateConnection() => new SqliteConnection(_connectionString);
 }

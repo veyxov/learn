@@ -32,8 +32,8 @@ interface ITodosContainer {
 }
 
 const TodosContainer: FC<ITodosContainer> = ({ todos, getTodos }) => {
-    const RemoveTodo = (id: number) => {
-        axios.delete(`http://localhost:5180/todo/${id}`);
+    const RemoveTodo = async (id: number) => {
+        await axios.delete(`http://localhost:5180/todo/${id}`);
         getTodos();
     }
 

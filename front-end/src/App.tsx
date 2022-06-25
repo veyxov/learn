@@ -2,47 +2,60 @@ import { FC, useEffect, useState } from 'react';
 import './App.css';
 import axios from 'axios';
 
-function TodoInput({ setTodos }) {
+interface ITodos {
+    getTodos: any
+}
+
+const TodoInput: FC<ITodos> = ({ getTodos }) => {
     const [title, setTitle] = useState('');
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
         axios.post(`http://localhost:5180/todo/${title}`);
-        setTodos((prev) => [...prev, title]);
+        getTodos();
     }
     const handleChange = (e: any) => {
         setTitle(e.target.value);
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input onChange={handleChange} type="text" placeholder="Add todo" />
-            <input type="submit" value="Add" />
+        <form className="flex flex-col" onSubmit={handleSubmit}>
+            <input onChange={handleChange} type="text" className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" placeholder="Add todo" />
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 rounded" type="submit" > Bruh </button>
         </form>
     );
 }
 
 interface ITodosContainer {
-    todos: any[]
+    todos: any[];
+    getTodos: any;
 }
 
-const TodosContainer: FC<ITodosContainer> = ({ todos }) => {
+const TodosContainer: FC<ITodosContainer> = ({ todos, getTodos }) => {
+    const RemoveTodo = (id: number) => {
+        axios.delete(`http://localhost:5180/todo/${id}`);
+        getTodos();
+    }
+
     return (
-        <>
+        <div className="ml-2 ease-linear transition-all duration-150">
             {
                 todos.length > 0 ?
                     todos.map((todo: any, index) => {
                         return (
-                            <div key={index}>
+                            <div key={index} className="grid grid-cols-2 gap-3">
                                 <h1>{todo.title}</h1>
-                                <h4>{todo.CreationDate}</h4>
+                                <button
+                                    className="my-1 bg-red-500 hover:bg-blue-700 text-white font-bold px-2 rounded"
+                                    onClick={() => RemoveTodo(todo.id)}
+                                >Delete</button>
                             </div>
                         )
                     })
                     :
                     <h1>No todos rn.</h1>
             }
-        </>
+        </div>
     );
 }
 
@@ -63,10 +76,16 @@ function App() {
     }, []);
 
     return (
-        <>
-            <TodoInput setTodos={setTodos} />
-            <TodosContainer todos={todos} />
-        </>
+        <div className="min-h-screen w-full flex item-center justify-center">
+            <div className="mt-3 grid grid-cols-2 divide-x">
+                <div className="mx-2">
+                    <TodoInput getTodos={getTodos} />
+                </div>
+                <div>
+                    <TodosContainer todos={todos} getTodos={getTodos} />
+                </div>
+            </div>
+        </div>
     );
 }
 

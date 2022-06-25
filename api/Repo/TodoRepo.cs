@@ -17,6 +17,15 @@ public class TodoRepo
         }
     }
 
+    public Task Remove(string id)
+    {
+        var qurey = @"DELETE FROM Todos WHERE Id = @Id";
+        using (var connection = _context.CreateConnection())
+        {
+            return connection.ExecuteAsync(qurey, new { Id = id });
+        }
+    }
+
     public List<Todo> GetAll()
     {
         var query = "SELECT * FROM Todos";

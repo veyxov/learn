@@ -16,5 +16,11 @@ public static class TodoApi
             await repo.Add(new Todo(title));
             return Results.Ok();
         });
+        app.MapDelete("/todo/{id}", async ([FromRoute] string id, [FromServices] TodoRepo repo)
+                     =>
+        {
+            await repo.Remove(id);
+            return Results.Ok();
+        });
     }
 }

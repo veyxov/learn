@@ -27,12 +27,12 @@ public class TodoRepo
         }
     }
 
-    public List<Todo> GetAll()
+    public List<TodoResponseDto> GetAll()
     {
-        var query = "SELECT * FROM Todos";
+        var query = "SELECT Title FROM Todos";
         using (var connection = _context.CreateConnection())
         {
-            var todo = connection.Query<Todo>(query);
+            var todo = connection.Query<TodoResponseDto>(query);
             return todo.ToList();
         }
     }

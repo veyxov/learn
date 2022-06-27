@@ -50,7 +50,7 @@ const TodosContainer: FC<ITodosContainer> = ({ todos, getTodos }) => {
                                     className="my-1 bg-red-500 hover:bg-blue-700 text-white font-bold px-2 rounded"
                                     onClick={() => RemoveTodo(todo.id)}
                                 >Delete</button>
-                            iii</div>
+                                iii</div>
                         )
                     })
                     :
@@ -78,7 +78,7 @@ function App() {
 
     return (
         <>
-            <div className="min-h-screen w-full flex item-center justify-center">
+            <div className="min-h-screen w-full flex item-center justify-center bg-gradient-to-r from-cyan-500 to-pink-500 ">
                 <div className="mt-3 grid grid-cols-2 divide-x">
                     <div className="mx-2">
                         <TodoInput getTodos={getTodos} />

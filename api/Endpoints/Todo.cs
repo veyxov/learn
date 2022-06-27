@@ -1,5 +1,18 @@
+using LanguageExt.Common;
 using Microsoft.AspNetCore.Mvc;
-using Mapster;
+
+public static class Failer
+{
+    public static Result<string> ShouldFail(bool should)
+    {
+        var exception = new Exception("This is a test exception");
+        if (should)
+        {
+            return new Result<string>(exception);
+        }
+        return "Hello World.";
+    }
+}
 
 public static class TodoApi
 {
@@ -35,9 +48,20 @@ public static class TodoApi
             "/convert",
             (Transaction transaction) =>
             {
-                var dto = transaction.Adapt<TransactionDto>();
-                return Results.Ok(dto);
+                var mapper = new TransactionMapper();
+                var transactionResponse = mapper.Map(transaction);
+
+                return Results.Ok(transactionResponse);
             }
         );
+
+        app.MapGet(
+                "/monad",
+                (bool fail) =>
+                {
+                    var result = Failer.ShouldFail(fail);
+                    return result.Match(success => Results.Ok(success), error => Results.BadRequest(error));
+                }
+                );
     }
 }

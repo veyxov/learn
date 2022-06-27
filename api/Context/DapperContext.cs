@@ -1,4 +1,3 @@
-using DapperExtensions.Sql;
 using Microsoft.Data.Sqlite;
 using System.Data;
 

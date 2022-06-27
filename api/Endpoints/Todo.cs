@@ -29,5 +29,10 @@ public static class TodoApi
                 return Results.Ok();
             }
         );
+
+        app.MapPost)(
+            "/convert",
+            ()
+        );
     }
 }

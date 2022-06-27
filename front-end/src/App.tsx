@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
 import './App.css';
 import axios from 'axios';
 
@@ -76,16 +77,20 @@ function App() {
     }, []);
 
     return (
-        <div className="min-h-screen w-full flex item-center justify-center">
-            <div className="mt-3 grid grid-cols-2 divide-x">
-                <div className="mx-2">
-                    <TodoInput getTodos={getTodos} />
-                </div>
-                <div>
-                    <TodosContainer todos={todos} getTodos={getTodos} />
+        <>
+            <div className="min-h-screen w-full flex item-center justify-center">
+                <div className="mt-3 grid grid-cols-2 divide-x">
+                    <div className="mx-2">
+                        <TodoInput getTodos={getTodos} />
+                    </div>
+                    <div>
+                        <TodosContainer todos={todos} getTodos={getTodos} />
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <Link to="/test">Test</Link>
+        </>
     );
 }
 

@@ -50,7 +50,7 @@ const TodosContainer: FC<ITodosContainer> = ({ todos, getTodos }) => {
                                     className="my-1 bg-red-500 hover:bg-blue-700 text-white font-bold px-2 rounded"
                                     onClick={() => RemoveTodo(todo.id)}
                                 >Delete</button>
-                            </div>
+                            iii</div>
                         )
                     })
                     :

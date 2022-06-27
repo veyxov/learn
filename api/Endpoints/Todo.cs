@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Mapster;
 
 public static class TodoApi
 {
@@ -30,9 +31,13 @@ public static class TodoApi
             }
         );
 
-        app.MapPost)(
+        app.MapPost(
             "/convert",
-            ()
+            (Transaction transaction) =>
+            {
+                var dto = transaction.Adapt<TransactionDto>();
+                return Results.Ok(dto);
+            }
         );
     }
 }

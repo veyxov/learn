@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import './App.css';
 import axios from 'axios';
+import Select from 'react-select'
 
 interface ITodos {
     getTodos: any
@@ -60,11 +61,31 @@ const TodosContainer: FC<ITodosContainer> = ({ todos, getTodos }) => {
     );
 }
 
-function App() {
+function handleSelect(newValue: any) {
+    console.log(document.body.style.background)
+    document.body.style.background = newValue.value;
+}
+
+function DropDaun(options: any) {
+    options = [
+            {value: "red", label: "red"},
+            {value: "blue", label: "blue"},
+            {value: "pink", label: "pink"},
+            {value: "purple", label: "purple"},
+            {value: "brown", label: "brown"},
+            {value: "white", label: "white"},
+            {value: "black", label: "black"}
+    ]
+    return (
+        <Select options={options} onChange={handleSelect} />
+    );
+}
+
+const App = () => {
     // image state
     const [todos, setTodos] = useState([]);
 
-    // Get random image
+    // Get random imae
     const getTodos = async () => {
         const response = await fetch('http://localhost:5180/todo');
         const todos = await response.json();
@@ -78,7 +99,7 @@ function App() {
 
     return (
         <>
-            <div className="min-h-screen w-full flex item-center justify-center bg-gradient-to-r from-cyan-500 to-pink-500 ">
+            <div className="min-h-screen w-full flex item-center justify-center">
                 <div className="mt-3 grid grid-cols-2 divide-x">
                     <div className="mx-2">
                         <TodoInput getTodos={getTodos} />
@@ -87,11 +108,14 @@ function App() {
                         <TodosContainer todos={todos} getTodos={getTodos} />
                     </div>
                 </div>
+                <div className={"relative h-32 w-32 ..."}>
+                    <DropDaun />
+                </div>
             </div>
 
-            <Link to="/test">Test</Link>
         </>
     );
 }
 
 export default App;
+

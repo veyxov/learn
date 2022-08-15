@@ -6,16 +6,19 @@ import (
 	"os"
 )
 
-func main() {
-    file, err := os.Open("file.txt")
-    if err != nil {
-        log.Fatal("Couldn't open file.")
-    }
-    defer file.Close()
-
+func printFileLines(file *os.File) {
     scanner := bufio.NewScanner(file)
 
     for scanner.Scan() {
         println(scanner.Text())
     }
+}
+
+func main() {
+    file, err := os.Open("file.txt")
+    if err != nil {
+        log.Fatal("Couldn't open file.")
+    }
+    printFileLines(file)
+    defer file.Close()
 }

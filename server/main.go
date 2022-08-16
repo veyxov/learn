@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 )
 
@@ -12,7 +11,7 @@ func main() {
         // Get data from body
         all, err := ioutil.ReadAll(r.Body);
         if err != nil {
-            log.Fatal(err)
+            http.Error(w, "Error occured.", http.StatusBadRequest)
         }
 
         // Print it back to the response.

@@ -1,22 +1,33 @@
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
+	"encoding/json"
 	"net/http"
 )
 
+type Todo struct {
+	id          int
+	text        string
+	isCompleted bool
+}
+
 func main() {
-    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-        // Get data from body
-        all, err := ioutil.ReadAll(r.Body);
+
+	// Fake repository
+	todos := [1]Todo{{1, "arst", true}}
+
+	http.HandleFunc("/todos", func(w http.ResponseWriter, r *http.Request) {
+		json, err := json.Marshal(todos)
         if err != nil {
-            http.Error(w, "Error occured.", http.StatusBadRequest)
+            http.Error(w, "Something happened", http.StatusInternalServerError)
         }
+		// Print it back to the response.
+		w.Write(json)
+	})
 
-        // Print it back to the response.
-        fmt.Fprintf(w, "body: %s", all)
-    })
+	http.HandleFunc("/create", func(w http.ResponseWriter, r *http.Request) {
+	})
 
-	http.ListenAndServe(":9090", nil);
+
+	http.ListenAndServe(":9090", nil)
 }

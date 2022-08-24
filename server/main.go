@@ -1,33 +1,22 @@
 package main
 
 import (
-	"encoding/json"
-	"net/http"
+  "net/http"
+
+  "github.com/gin-gonic/gin"
 )
 
-type Todo struct {
-	id          int
-	text        string
-	isCompleted bool
-}
-
 func main() {
-
-	// Fake repository
-	todos := [1]Todo{{1, "arst", true}}
-
-	http.HandleFunc("/todos", func(w http.ResponseWriter, r *http.Request) {
-		json, err := json.Marshal(todos)
-        if err != nil {
-            http.Error(w, "Something happened", http.StatusInternalServerError)
-        }
-		// Print it back to the response.
-		w.Write(json)
-	})
-
-	http.HandleFunc("/create", func(w http.ResponseWriter, r *http.Request) {
-	})
-
-
-	http.ListenAndServe(":9090", nil)
+  r := gin.Default()
+  r.GET("/ping", func(c *gin.Context) {
+    c.JSON(http.StatusOK, gin.H{
+      "message": "pong",
+    })
+  })
+  r.GET("/test", func(c *gin.Context) {
+      c.JSON(http.StatusBadRequest, gin.H {
+          "test": "Pest",
+      })
+  })
+  r.Run(":8080") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }

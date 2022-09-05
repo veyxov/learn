@@ -19,3 +19,7 @@ footer{
   width: 40%;
 }
 
+a {
+  color: #028090;
+  text-decoration: inherit; /* no underline */
+}

@@ -1,3 +1,4 @@
+/* Globals */
 * {
   margin: 0;
   box-sizing: border-box;
@@ -9,6 +10,7 @@ body {
     font-family: Airal;
 }
 
+/* Containers */
 .center {
     position: absolute;
     top: 50%;
@@ -16,11 +18,15 @@ body {
     transform: translateX(-50%) translateY(-50%);
 }
 
-.form-head {
-    font-size: 40px;
-    text-align: center;
-    margin-bottom: 20px;
+.sub-container {
+    width: 75%;
+    margin: 0 auto;
+    padding: 10px 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
+
+/* Input */
 
 .input {
     font-size: 20px;
@@ -32,17 +38,27 @@ body {
     width: 100%;
 }
 
+.input:focus::placeholder { /* Nested effects + pseudo elements*/
+    color: black;
+}
+
 .input:focus {
     transition: all 0.15s ease-in;
     background: white;
     border-color: #4C7ED8;
 }
 
-
-.input:focus::placeholder {
-    color: black;
+.input::placeholder {
+    color: #D2D2D2;
 }
 
+.form-head {
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Buttons */
 .btn {
   width: 100%;
   padding: 10px 0;
@@ -77,6 +93,7 @@ body {
     background-color: #fbfbfb;
 }
 
+/* Spacing */
 .margin-bottom {
     margin-bottom: 17px;
 }
@@ -85,14 +102,7 @@ body {
     margin-top: 17px;
 }
 
-.input::placeholder {
-    color: #D2D2D2;
-}
-
-.btn {
-    width: 100%;
-}
-
+/* Typography a.k.a Fonts */
 .text-secondary {
     color: #acacac;
     text-align: center;
@@ -107,12 +117,4 @@ body {
 
 .text-black {
     color: #000;
-}
-
-.sub-container {
-    width: 75%;
-    margin: 0 auto;
-    padding: 10px 10px;
-    margin-top: 20px;
-    margin-bottom: 10px;
 }

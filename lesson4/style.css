@@ -38,7 +38,7 @@ body {
     width: 100%;
 }
 
-.input:focus::placeholder { /* Nested effects + pseudo elements*/
+.input:focus::placeholder { /* Nested effects + pseudo elements */
     color: black;
 }
 

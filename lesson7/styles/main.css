@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-img {
+ img {
   width: 100%;
 }
 
@@ -15,6 +15,37 @@ body {
 .container {
   max-width: 1320px;
   margin: 0 auto;  
+}
+
+.text-big {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.text-secondary {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+li {
+    line-height: 150%;
+}
+
+.m-top {
+    margin-top: 20px;
+}
+.m-top-small{
+    margin-top: 10px;
+}
+
+.container-center {
+  max-width: 630px;
+  margin: 0 auto;  
+}
+
+.container-list {
+    max-width: 550px;
+    margin: 0 auto;
 }
 
 .header-row {

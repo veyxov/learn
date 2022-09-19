@@ -12,10 +12,6 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.container {
-  max-width: 1320px;
-  margin: 0 auto;  
-}
 
 .text-big {
     font-size: 48px;
@@ -34,13 +30,19 @@ li {
 .m-top {
     margin-top: 20px;
 }
+
 .m-top-small{
     margin-top: 10px;
 }
 
+.container {
+  max-width: 1320px;
+  margin: 0 auto;  
+}
+
 .container-center {
   max-width: 630px;
-  margin: 0 auto;  
+  margin: 50px auto 0 auto;
 }
 
 .container-list {
@@ -110,4 +112,24 @@ li {
   list-style: none;
   display: flex;
   gap: 20px;
+}
+
+.form {
+    margin-top: 50px;
+    display: block;
+}
+
+.input {
+    height: 50px;
+    margin-bottom: 16px;
+    padding-left: 18px;
+    border-radius: 8px 0px 0px 8px;
+    transition: border 222ms;
+    border: 1px solid #cccccc;
+    width: 100%;
+    outline: none;
+}
+
+.input:focus {
+    border: 1px solid black;
 }

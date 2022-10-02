@@ -1,2 +1,5 @@
 
 back-end/rust/basics/target
+back-end/dotnet/mediator-event-sourcing/server/bin/Debug/net7.0
+back-end/dotnet/mediator-event-sourcing/server/obj/Debug/net7.0
+back-end/dotnet/mediator-event-sourcing/server/obj

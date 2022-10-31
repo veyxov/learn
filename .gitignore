@@ -5,3 +5,4 @@ back-end/dotnet/mediator-event-sourcing/server/obj/Debug/net7.0
 back-end/dotnet/mediator-event-sourcing/server/obj
 back-end/rust/actix/target
 back-end/rust/problems/richest_customer/target
+back-end/rust/problems/to_zero/target

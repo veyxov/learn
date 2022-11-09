@@ -27,6 +27,13 @@ struct Rectangle {
     bottom_right: Point,
 }
 
+fn rect_area(rectangle: Rectangle) -> f32 {
+    let dx = rectangle.bottom_right.x - rectangle.top_left.x;
+    let dy = rectangle.top_left.y - rectangle.bottom_right.x;
+
+    return dx * dy;
+}
+
 fn main() {
     // Create struct with field init shorthand
     let name = String::from("Peter");
@@ -56,7 +63,7 @@ fn main() {
     let _rectangle = Rectangle {
         // struct instantiation is an expression too
         top_left: Point { x: left_edge, y: top_edge },
-        bottom_right: bottom_right,
+        bottom_right,
     };
 
     // Instantiate a unit struct

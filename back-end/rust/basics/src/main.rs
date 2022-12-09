@@ -1,10 +1,15 @@
+trait Rectangle {
+    fn calculate_area(&self) -> i32;
+    fn calculate_perimeter(&self) -> i32;
+}
+
 struct Rect {
     // Sides of the rectangle
     a: i32,
     b: i32
 }
 
-impl Rect {
+impl Rectangle for Rect {
     // Calculate area:
     // S = a * b
     fn calculate_area(&self) -> i32 {
